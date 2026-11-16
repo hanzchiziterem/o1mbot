@@ -1,0 +1,29 @@
+{
+  "name": "o1mbot-monorepo",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Algorithmic trading bot and backtester monorepo for Exness MT5",
+  "packageManager": "pnpm@12.21.0",
+  "scripts": {
+    "prepare": "husky || true",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "dev": "turbo run dev"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "husky": "^9.1.7",
+    "semantic-release": "^24.2.3",
+    "turbo": "^2.11.11"
+  }
+}
