@@ -1,0 +1,108 @@
+general:
+  app_name: "o1mbot-trading-bot"
+  mode: "BACKTEST" # "BACKTEST" or "LIVE_PAPER"
+  log_level: "INFO"
+  database_path: "data/trades_metadata.db"
+
+trading:
+  symbols:
+    - "XAUUSDm"
+    - "BTCUSDm"
+    - "EURUSDm"
+    - "GBPUSDm"
+  
+  timeframe_pairs:
+    - htf: "H4"
+      ltf: "M15"
+    - htf: "H1"
+      ltf: "M5"
+
+  sessions:
+    london_open: "07:00"
+    london_close: "16:00"
+    ny_open: "12:00"
+    ny_close: "21:00"
+    enforce_session_filter: false
+
+risk:
+  risk_per_trade_pct: 1.0 # 1% of account equity
+  min_rr: 5.0             # Strictly reject any trade with planned RR < 5.0
+  max_open_trades: 3
+  max_daily_loss_pct: 3.0
+  spread_buffer_pips: 2.0
+  break_even_at_r: 2.5    # Move SL to BE once trade reaches 2.5R
+
+strategy:
+  macro:
+    quarters_anchor_month: 12
+    quarter_anchor_day: 1
+    ipda_lookbacks: [20, 40, 60]
+    dol_primary_days: 60
+  
+  volume_profile:
+    bin_count: 80
+    value_area_pct: 0.70
+    poc_confluence_tolerance_pct: 0.0020 # 0.2% price proximity
+
+  structure:
+    swing_lookback: 5
+    fvg_min_size_pct: 0.0003
+    breaker_validation: true
+
+  entries:
+    patterns:
+      - "QMR"
+      - "AMD"
+    amd_box_candles: 12
+    amd_displacement_threshold_mult: 1.5
+    qmr_left_shoulder_tolerance_pct: 0.0015
+
+exness_specs:
+  XAUUSDm:
+    contract_size: 100
+    lot_step: 0.01
+    min_lot: 0.01
+    max_lot: 100.0
+    tick_size: 0.01
+    pip_size: 0.1
+    default_spread_pips: 1.5
+    commission_per_lot: 0.0
+  BTCUSDm:
+    contract_size: 1
+    lot_step: 0.01
+    min_lot: 0.01
+    max_lot: 50.0
+    tick_size: 0.01
+    pip_size: 1.0
+    default_spread_pips: 10.0
+    commission_per_lot: 0.0
+  EURUSDm:
+    contract_size: 100000
+    lot_step: 0.01
+    min_lot: 0.01
+    max_lot: 200.0
+    tick_size: 0.00001
+    pip_size: 0.0001
+    default_spread_pips: 0.6
+    commission_per_lot: 0.0
+  GBPUSDm:
+    contract_size: 100000
+    lot_step: 0.01
+    min_lot: 0.01
+    max_lot: 200.0
+    tick_size: 0.00001
+    pip_size: 0.0001
+    default_spread_pips: 0.8
+    commission_per_lot: 0.0
+
+mt5:
+  login: 0
+  password: ""
+  server: "Exness-MT5Real"
+  path: ""
+  timeout_ms: 60000
+  magic_number: 101088
+
+backtest:
+  initial_balance: 10000.0
+  slippage_points: 2

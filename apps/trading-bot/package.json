@@ -1,0 +1,13 @@
+{
+  "name": "@o1mbot/trading-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Exness MT5 Algorithmic Trading Bot and Backtester",
+  "scripts": {
+    "lint": "uv run --no-sync ruff check .",
+    "format": "uv run --no-sync ruff format .",
+    "typecheck": "uv run --no-sync pyright",
+    "test": "uv run --no-sync pytest",
+    "dev": "uv run --no-sync streamlit run dashboard/app.py"
+  }
+}
